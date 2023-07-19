@@ -1,16 +1,16 @@
 const imagesContainer = document.getElementById('imagesContainer');
 
 const imagesArr = [
-  'https://img.freepik.com/free-photo/cute-ai-generated-cartoon-bunny_23-2150288879.jpg',
-  'https://m.media-amazon.com/images/M/MV5BMDU4ODc1M2UtODg3Ny00NDViLTkxNmQtMzMzZWM1NGRmYTNjXkEyXkFqcGdeQXVyODY5Njk4Njc@._V1_FMjpg_UX1000_.jpg',
-  'https://dotesports.com/wp-content/uploads/2022/12/08230958/cyberpunk-2077-multiplayer.large_.jpg?w=1200',
-  'https://images-eu.ssl-images-amazon.com/images/S/pv-target-images/ca30c1518a7c11de97d29d24462323e6188bf6e7ff2d65721810eaa8bc799702._UY500_UX667_RI_TTW_.jpg',
-  'https://m.media-amazon.com/images/M/MV5BMDkxMGYyNTktM2U4ZS00NTAyLWFhNzItMDQ0YzRlYzQ0YjM1XkEyXkFqcGdeQXVyMTQyMTMwOTk0._V1_.jpg',
+  'https://images.unsplash.com/photo-1470093851219-69951fcbb533?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80&h=400',
+  'https://images.unsplash.com/photo-1425082661705-1834bfd09dca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80&h=400',
+  'https://images.unsplash.com/photo-1626548307930-deac221f87d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80&h=400',
+  'https://images.unsplash.com/photo-1497752531616-c3afd9760a11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80&h=400',
+  'https://images.unsplash.com/photo-1534278931827-8a259344abe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80&h=400',
 ];
 
 //first image starts at 0px hence -1
 const imagesInArray = imagesArr.length - 1;
-const flexBoxGaps = imagesInArray * 200;
+const flexBoxGaps = imagesInArray * 10;
 const totalSliderWidth = imagesContainer.offsetWidth + flexBoxGaps;
 const pixelsToMove = totalSliderWidth / imagesInArray;
 
@@ -37,7 +37,7 @@ navDots.forEach((navDot, index) => {
 function moveSlide(position) {
   updateNavigationDots(position);
   const moveAmount = position * pixelsToMove;
-  imagesContainer.style.translate = `-${moveAmount}px`;
+  imagesContainer.style.transform = `translateX(-${moveAmount}px)`;
   console.log(moveAmount);
 }
 function updateNavigationDots(index) {

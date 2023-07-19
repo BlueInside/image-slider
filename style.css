@@ -19,7 +19,7 @@
 }
 
 .slider-frame {
-  width: 70%;
+  width: 400px;
   height: auto;
   margin-left: auto;
   margin-right: auto;
@@ -30,9 +30,8 @@
   height: 400px;
   width: 2000px;
   display: flex;
-  gap: 200px;
-  transform: translateX(10px);
-  transition: translate 600ms ease-in-out;
+  gap: 10px;
+  transition: transform 600ms ease-in;
 }
 
 .images-container img {
