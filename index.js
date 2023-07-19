@@ -1,4 +1,4 @@
-const sliderContainer = document.getElementById('sliderContainer');
+const imagesContainer = document.getElementById('imagesContainer');
 
 const imagesArr = [
   'https://img.freepik.com/free-photo/cute-ai-generated-cartoon-bunny_23-2150288879.jpg',
@@ -12,27 +12,36 @@ imagesArr.forEach((image) => {
   const img = document.createElement('img');
   img.setAttribute('src', image);
 
-  sliderContainer.appendChild(img);
+  imagesContainer.appendChild(img);
 });
+const arrowRight = document.querySelector('.arrow-right');
+arrowRight.addEventListener('click', next);
+
+const arrowleft = document.querySelector('.arrow-left');
+arrowleft.addEventListener('click', previous);
 
 function next() {
-  let sliderPosition = sliderContainer.style.translate || '0px';
+  let sliderPosition = imagesContainer.style.translate || '0px';
   // style image container with css right property add val
   const sliderPositionAsNumber = Number(
     sliderPosition.slice(0, -2) //remove px
   );
-  sliderPosition = `${sliderPositionAsNumber - 300}px`;
-
-  sliderContainer.style.translate = sliderPosition;
+  if (sliderPositionAsNumber > -3000) {
+    sliderPosition = `${sliderPositionAsNumber - 500}px`;
+    imagesContainer.style.translate = sliderPosition;
+  }
 }
 
 function previous() {
-  let sliderPosition = sliderContainer.style.translate || '0px';
+  let sliderPosition = imagesContainer.style.translate || '0px';
   // style image container with css right property add val
   const sliderPositionAsNumber = Number(
     sliderPosition.slice(0, -2) //remove px
   );
-  sliderPosition = `${sliderPositionAsNumber + 300}px`;
+  if (sliderPositionAsNumber < 0) {
+    sliderPosition = `${sliderPositionAsNumber + 500}px`;
+    imagesContainer.style.translate = sliderPosition;
+  }
 
-  sliderContainer.style.translate = sliderPosition;
+  imagesContainer.style.translate = sliderPosition;
 }

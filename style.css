@@ -10,8 +10,8 @@
 .arrows-container {
   position: absolute;
   top: 50%;
-  left: -15px;
-  right: 13px;
+  left: -61px;
+  right: -53px;
   transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
@@ -26,12 +26,13 @@
   overflow: hidden;
 }
 
-.images-container {
+#imagesContainer {
   height: 400px;
   width: 2000px;
   display: flex;
   gap: 200px;
   transform: translateX(10px);
+  transition: translate 600ms ease-in-out;
 }
 
 .images-container img {
@@ -61,4 +62,16 @@
 .arrow-right:hover {
   transform: translateX(+5px);
   filter: brightness(110%);
+}
+
+.slider-navigation-dots {
+  position: absolute;
+  left: 40%;
+  top: 60%;
+  transform: translate(50%, 50%);
+}
+
+.slider-navigation-dots > ul {
+  display: flex;
+  gap: 20px;
 }

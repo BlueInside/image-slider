@@ -1,0 +1,14 @@
+slider-navigation-dots {
+  position: absolute;
+  left: 40%;
+  top: 60%;
+  transform: translate(50%, 50%);
+}
+
+slider-navigation-dots > ul {
+  display: flex;
+}
+
+slider-navigation-dots > ul > li {
+  margin-right: 10px;
+}
