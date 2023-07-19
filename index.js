@@ -68,3 +68,8 @@ function previous() {
     ? moveSlide(imagesInArray)
     : moveSlide(activeSlideIndex - 1);
 }
+function changeSlide() {
+  next();
+  setTimeout(changeSlide, 5000);
+}
+changeSlide();
