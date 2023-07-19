@@ -68,10 +68,23 @@
   position: absolute;
   left: 40%;
   top: 60%;
-  transform: translate(50%, 50%);
+  transform: translate(-9%, 251%);
 }
 
 .slider-navigation-dots > ul {
   display: flex;
-  gap: 20px;
+  gap: 6px;
+}
+.slider-navigation-dots > ul > .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 5px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.slider-navigation-dots > ul > .dot.active {
+  background-color: #141313;
 }

@@ -7,18 +7,27 @@ const imagesArr = [
   'https://images-eu.ssl-images-amazon.com/images/S/pv-target-images/ca30c1518a7c11de97d29d24462323e6188bf6e7ff2d65721810eaa8bc799702._UY500_UX667_RI_TTW_.jpg',
   'https://m.media-amazon.com/images/M/MV5BMDkxMGYyNTktM2U4ZS00NTAyLWFhNzItMDQ0YzRlYzQ0YjM1XkEyXkFqcGdeQXVyMTQyMTMwOTk0._V1_.jpg',
 ];
+const flexBoxGaps = 800;
+const totalSliderWidth = imagesContainer.offsetWidth + flexBoxGaps;
+const imagesInArray = imagesArr.length - 1;
+const pixelsToMove = totalSliderWidth / imagesInArray;
 
 imagesArr.forEach((image) => {
+  const navDotsContainer = document.querySelector('.navigation-dots-container');
   const img = document.createElement('img');
   img.setAttribute('src', image);
+
+  const navDot = document.createElement('li');
+  navDot.classList.add('dot');
+  navDotsContainer.appendChild(navDot);
 
   imagesContainer.appendChild(img);
 });
 const arrowRight = document.querySelector('.arrow-right');
 arrowRight.addEventListener('click', next);
 
-const arrowleft = document.querySelector('.arrow-left');
-arrowleft.addEventListener('click', previous);
+const arrowLeft = document.querySelector('.arrow-left');
+arrowLeft.addEventListener('click', previous);
 
 function next() {
   let sliderPosition = imagesContainer.style.translate || '0px';
@@ -26,8 +35,8 @@ function next() {
   const sliderPositionAsNumber = Number(
     sliderPosition.slice(0, -2) //remove px
   );
-  if (sliderPositionAsNumber > -3000) {
-    sliderPosition = `${sliderPositionAsNumber - 500}px`;
+  if (sliderPositionAsNumber > -totalSliderWidth) {
+    sliderPosition = `${sliderPositionAsNumber - pixelsToMove}px`;
     imagesContainer.style.translate = sliderPosition;
   }
 }
@@ -39,7 +48,7 @@ function previous() {
     sliderPosition.slice(0, -2) //remove px
   );
   if (sliderPositionAsNumber < 0) {
-    sliderPosition = `${sliderPositionAsNumber + 500}px`;
+    sliderPosition = `${sliderPositionAsNumber + pixelsToMove}px`;
     imagesContainer.style.translate = sliderPosition;
   }
 
