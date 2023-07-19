@@ -7,22 +7,44 @@ const imagesArr = [
   'https://images-eu.ssl-images-amazon.com/images/S/pv-target-images/ca30c1518a7c11de97d29d24462323e6188bf6e7ff2d65721810eaa8bc799702._UY500_UX667_RI_TTW_.jpg',
   'https://m.media-amazon.com/images/M/MV5BMDkxMGYyNTktM2U4ZS00NTAyLWFhNzItMDQ0YzRlYzQ0YjM1XkEyXkFqcGdeQXVyMTQyMTMwOTk0._V1_.jpg',
 ];
-const flexBoxGaps = 800;
-const totalSliderWidth = imagesContainer.offsetWidth + flexBoxGaps;
+
+//first image starts at 0px hence -1
 const imagesInArray = imagesArr.length - 1;
+const flexBoxGaps = imagesInArray * 200;
+const totalSliderWidth = imagesContainer.offsetWidth + flexBoxGaps;
 const pixelsToMove = totalSliderWidth / imagesInArray;
 
-imagesArr.forEach((image) => {
+imagesArr.forEach((image, index) => {
   const navDotsContainer = document.querySelector('.navigation-dots-container');
   const img = document.createElement('img');
   img.setAttribute('src', image);
 
   const navDot = document.createElement('li');
+  if (index === 0) navDot.classList.add('active');
   navDot.classList.add('dot');
+  navDot.dataset.index = index;
   navDotsContainer.appendChild(navDot);
 
   imagesContainer.appendChild(img);
 });
+
+const navDots = document.querySelectorAll('.dot');
+navDots.forEach((navDot, index) => {
+  navDot.addEventListener('click', () => {
+    moveSlide(index);
+  });
+});
+function moveSlide(position) {
+  updateNavigationDots(position);
+  const moveAmount = position * pixelsToMove;
+  imagesContainer.style.translate = `-${moveAmount}px`;
+  console.log(moveAmount);
+}
+function updateNavigationDots(index) {
+  navDots.forEach((navDot, dotIndex) => {
+    navDot.classList.toggle('active', dotIndex === index);
+  });
+}
 const arrowRight = document.querySelector('.arrow-right');
 arrowRight.addEventListener('click', next);
 
@@ -30,27 +52,19 @@ const arrowLeft = document.querySelector('.arrow-left');
 arrowLeft.addEventListener('click', previous);
 
 function next() {
-  let sliderPosition = imagesContainer.style.translate || '0px';
-  // style image container with css right property add val
-  const sliderPositionAsNumber = Number(
-    sliderPosition.slice(0, -2) //remove px
+  let activeSlideIndex = Number(
+    document.querySelector('.active').dataset.index
   );
-  if (sliderPositionAsNumber > -totalSliderWidth) {
-    sliderPosition = `${sliderPositionAsNumber - pixelsToMove}px`;
-    imagesContainer.style.translate = sliderPosition;
-  }
+  activeSlideIndex === imagesInArray
+    ? moveSlide(0)
+    : moveSlide(activeSlideIndex + 1);
 }
 
 function previous() {
-  let sliderPosition = imagesContainer.style.translate || '0px';
-  // style image container with css right property add val
-  const sliderPositionAsNumber = Number(
-    sliderPosition.slice(0, -2) //remove px
+  let activeSlideIndex = Number(
+    document.querySelector('.active').dataset.index
   );
-  if (sliderPositionAsNumber < 0) {
-    sliderPosition = `${sliderPositionAsNumber + pixelsToMove}px`;
-    imagesContainer.style.translate = sliderPosition;
-  }
-
-  imagesContainer.style.translate = sliderPosition;
+  activeSlideIndex === 0
+    ? moveSlide(imagesInArray)
+    : moveSlide(activeSlideIndex - 1);
 }
